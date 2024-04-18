@@ -1,0 +1,66 @@
+class ExpenseTracker:
+    def __init__(self):
+        self.expenses = {}
+
+    def add_expense(self, user, amount):
+        if user in self.expenses:
+            self.expenses[user] += amount
+        else:
+            self.expenses[user] = amount
+
+    def split_bill(self, total_amount, users):
+        split_amount = total_amount / len(users)
+        for user in users:
+            self.add_expense(user, split_amount)
+
+    def display_balance(self):
+        for user, amount in self.expenses.items():
+            print(f"{user}: ${amount:.2f}")
+
+    def settle_up(self, user1, user2):
+        if user1 in self.expenses and user2 in self.expenses:
+            if self.expenses[user1] > self.expenses[user2]:
+                difference = self.expenses[user1] - self.expenses[user2]
+                print(f"{user2} owes {user1}: ${difference:.2f}")
+            elif self.expenses[user1] < self.expenses[user2]:
+                difference = self.expenses[user2] - self.expenses[user1]
+                print(f"{user1} owes {user2}: ${difference:.2f}")
+            else:
+                print("No balances to settle up!")
+        else:
+            print("User not found!")
+
+def main():
+    tracker = ExpenseTracker()
+    while True:
+        print("\nExpense Tracker Menu:")
+        print("1. Add Expense")
+        print("2. Split Bill")
+        print("3. Display Balances")
+        print("4. Settle Up")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            user = input("Enter the name of the user: ")
+            amount = float(input("Enter the amount: "))
+            tracker.add_expense(user, amount)
+        elif choice == '2':
+            total_amount = float(input("Enter the total bill amount: "))
+            users = input("Enter the names of users (comma-separated): ").split(',')
+            tracker.split_bill(total_amount, users)
+        elif choice == '3':
+            tracker.display_balance()
+        elif choice == '4':
+            user1 = input("Enter the name of the first user: ")
+            user2 = input("Enter the name of the second user: ")
+            tracker.settle_up(user1, user2)
+        elif choice == '5':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice! Please enter a number between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
