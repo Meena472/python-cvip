@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <style>body {
+
+        background-image: url(https://i.gifer.com/76YS.gif);
+        color: black;
+        font-size: 25px;
+      }
+      
+      .dark-mode {
+        background-image: url(https://media.tenor.com/kKmvIr30vQYAAAAj/stars-changing-colors.gif);
+        color: white;
+      }
+    
+    .h2-clock{
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: -250px;
+        font-family: monospace;
+        color: rgb(244, 248, 249);
+        font-weight: bold;
+        text-shadow: 1px 1px 35px rgb(255, 0, 0);
+    }
+    #txt{
+        font-family: monospace;
+        text-align: center;
+        font-weight: bold;
+        font-size: 140px;
+        color: rgb(255, 0, 0);
+        box-sizing: border-box;
+        border-style: solid;
+        border-radius: 10px;
+        box-shadow: 1px 1px 20px rgb(47, 224, 255);
+        padding: 20px;
+        margin-top:  350px;
+        margin-left:  350px;
+        margin-right:  350px;
+        margin-bottom: 0px;
+        font-family: 'Gemunu Libre', sans-serif;
+    }
+    
+    ::-webkit-scrollbar {
+        width: 5px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px rgb(24, 24, 24); 
+        border-radius: 5px;
+      }
+       
+      ::-webkit-scrollbar-thumb {
+        background: rgb(247, 247, 0); 
+        border-radius: 7px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d80602; 
+      }</style>
+    <script>function startTime() {
+        const today = new Date();
+        let h = today.getHours();
+        let m = today.getMinutes();
+        let s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+        setTimeout(startTime, 1000);
+      }
+      
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};  
+        return i;
+      }
+    
+      function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+     }</script>
+    
+    
+    <link rel="icon" type="image/x-icon" href="images/favicon.webp">
+    <title>CVIP-2</title>
+</head>
+<body onload="startTime()">
+
+    <div class="px-4 pt-5 my-5 text-center ">
+        <div id="txt"></div>
+        <button onclick="myFunction()"
+            style="border:none; background-color:rgba(0, 0, 0, 0); font-size:50px;margin-top: 40px; margin-bottom: 15px;">
+  <label class="switch">
+    <input type="radio">
+    <span class="slider round"></span>
+  </label></button>
+
+           
+    </div>
+
+</body>
+
+</html>
